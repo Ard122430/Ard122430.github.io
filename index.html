@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <style>
+        body {
+            background-image: url(giphy.gif);
+        }
+
+        footer {
+            background-color: #ffe7e77c;
+        }
+
+        .jumbotron {
+            position: relative;
+        }
+
+        #noButton {
+            position: absolute;
+            right: 0;
+        }
+    </style>
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="text-center" style="font-weight: bold;">¿Quieres ser mi San Valentín Nora?</h1>
+            <p class="lead">¿Quieres ser mi san valentin este 2025 y para siempre vida mía?</p>
+            <hr class="my-4">
+            <p class="text-center lead">Piénsatelo eh</p>
+            <button id="siButton" class="btn btn-success btn-lg">Sí, obvio</button>
+            <button id="noButton" class="btn btn-danger btn-lg mr-4">No, negro</button>
+
+        </div>
+    </div>
+
+    <footer class=" text-center py-5">
+        <p>&copy; Derechos de Nora como novia Reservada</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const noButton = document.getElementById("noButton");
+            const siButton = document.getElementById("siButton");
+            const jumbotron = document.querySelector(".jumbotron");
+            const container = document.querySelector(".container");
+
+            // Frases graciosas para el botón "No"
+            const frasesNo = [
+                "¿Estás segura? 🤨",
+                "Piénsalo otra vez... 😏",
+                "No es la respuesta correcta 😠",
+                "Tómate tu tiempo... pero di sí 😜",
+                "Vas a romperme el corazón 💔",
+                "No existe esa opción 😈",
+                "Sabemos que dirás que sí 😉",
+                "¿Eso es un sí disfrazado? 🤔"
+            ];
+
+            noButton.addEventListener("click", function () {
+                // Cambiar el texto del botón "No"
+                const randomIndex = Math.floor(Math.random() * frasesNo.length);
+                noButton.innerText = frasesNo[randomIndex];
+
+                // Hacer el botón "Sí" más grande
+                let currentSize = parseFloat(window.getComputedStyle(siButton).fontSize);
+                siButton.style.fontSize = (currentSize + 5) + "px";
+
+                // Mover el botón "No" a una posición aleatoria en la pantalla
+                const windowWidth = window.innerWidth - noButton.offsetWidth;
+                const windowHeight = window.innerHeight - noButton.offsetHeight;
+
+                const randomX = Math.floor(Math.random() * windowWidth);
+                const randomY = Math.floor(Math.random() * windowHeight);
+
+                noButton.style.position = "absolute";
+                noButton.style.left = `${randomX}px`;
+                noButton.style.top = `${randomY}px`;
+            });
+
+            siButton.addEventListener("click", function () {
+                // Ocultar todo el contenido menos el jumbotron
+                container.innerHTML = `
+                    <div class="jumbotron text-center">
+                        <h1 class="display-4" style="font-weight: bold;">¡Sabía que pulsarías que sí! ❤️</h1>
+                        <img src="miau.gif" alt="yeah" width="200" height="200">
+                        <p class="lead">Te amo, mi bichito. ¡Feliz San Valentín! 💕</p>
+                    </div>
+                `;
+            });
+        });
+    </script>
+</body>
+
+</html>
